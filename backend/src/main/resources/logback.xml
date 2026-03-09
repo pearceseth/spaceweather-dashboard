@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+      <!-- All MDC fields are included by default -->
+    </encoder>
+  </appender>
+
+  <!-- Suppress noisy Netty KQueue warnings -->
+  <logger name="io.netty.channel.kqueue" level="ERROR"/>
+
+  <root level="INFO">
+    <appender-ref ref="CONSOLE"/>
+  </root>
+</configuration>

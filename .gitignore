@@ -1,0 +1,54 @@
+# Scala / sbt
+target/
+.bsp/
+.metals/
+.bloop/
+project/metals.sbt
+project/project/
+*.class
+*.log
+
+# Node.js / Frontend
+node_modules/
+.next/
+dist/
+.pnpm-store/
+*.tsbuildinfo
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment / Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Docker
+.docker/
+
+# Build artifacts
+*.jar
+*.war
+
+# Test / Coverage
+coverage/
+.coverage
+htmlcov/
+
+# Misc
+*.swp
+*.swo
+*~
