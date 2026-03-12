@@ -1,9 +1,17 @@
 package com.solarion.domain.upstream
 
+import com.solarion.annotation.doc
 import zio.json.*
 
-// NOAA Solar Wind Plasma response is array-of-arrays:
-// [["time_tag","density","speed","temperature"], ["2026-03-07 14:56:00.000","3.30","464.5","78809"], ...]
+/**
+ * Parser for NOAA SWPC solar wind plasma data.
+ *
+ * NOAA Solar Wind Plasma response is array-of-arrays:
+ * [["time_tag","density","speed","temperature"], ["2026-03-07 14:56:00.000","3.30","464.5","78809"], ...]
+ *
+ * @see [[https://github.com/sethpearce/spaceweather-dashboard/blob/main/docs/domain/noaa-solar-wind-plasma.md Domain Documentation]]
+ */
+@doc("docs/domain/noaa-solar-wind-plasma.md")
 object NoaaSolarWindPlasma:
   final case class PlasmaData(speed: Option[Int], density: Option[Double])
 

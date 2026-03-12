@@ -1,8 +1,15 @@
 package com.solarion.services
 
+import com.solarion.annotation.doc
 import com.solarion.domain.HealthStatus
 import zio.*
 
+/**
+ * Health check service trait.
+ *
+ * @see [[https://github.com/sethpearce/spaceweather-dashboard/blob/main/docs/services/health-service.md Service Documentation]]
+ */
+@doc("docs/services/health-service.md")
 trait HealthService:
   def check: UIO[HealthStatus]
 

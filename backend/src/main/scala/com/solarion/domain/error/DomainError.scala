@@ -1,5 +1,13 @@
 package com.solarion.domain.error
 
+import com.solarion.annotation.doc
+
+/**
+ * Error hierarchy for the application.
+ *
+ * @see [[https://github.com/sethpearce/spaceweather-dashboard/blob/main/docs/domain/domain-error.md Domain Documentation]]
+ */
+@doc("docs/domain/domain-error.md")
 sealed trait DomainError extends Throwable {
   val message: String
   val context: Option[String]

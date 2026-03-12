@@ -1,10 +1,19 @@
 package com.solarion.services
 
+import com.solarion.annotation.doc
 import com.solarion.domain.SpaceWeatherStatus
 import com.solarion.services.FetchOps.*
 import zio.{cache, *}
 import zio.cache.*
 
+/**
+ * Aggregates space weather data from multiple upstream sources.
+ *
+ * Uses caching with 60-second TTL. Partial failures result in null fields.
+ *
+ * @see [[https://github.com/sethpearce/spaceweather-dashboard/blob/main/docs/services/space-weather-status-service.md Service Documentation]]
+ */
+@doc("docs/services/space-weather-status-service.md")
 trait SpaceWeatherStatusService:
   def getStatus: UIO[SpaceWeatherStatus]
 

@@ -1,0 +1,47 @@
+name: Update Documentation
+
+on:
+  workflow_dispatch:  # Manual trigger for testing
+  # push:
+  #   branches: [main]
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Run doc update agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/doc_update_agent.py
+
+      - name: Open PR with doc updates
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "docs: auto-update from ${{ github.sha }}"
+          title: "docs: auto-update from commit ${{ github.sha }}"
+          body: |
+            Automated documentation update triggered by commit ${{ github.sha }}.
+
+            Please review for accuracy before merging.
+          branch: docs/auto-update-${{ github.sha }}
+          base: main
+          labels: documentation,automated
+          add-paths: docs/

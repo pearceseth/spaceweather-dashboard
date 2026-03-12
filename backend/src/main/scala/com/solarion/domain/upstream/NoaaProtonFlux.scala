@@ -1,9 +1,17 @@
 package com.solarion.domain.upstream
 
+import com.solarion.annotation.doc
 import zio.json.*
 
-// NOAA Proton flux response is array-of-objects:
-// [{"time_tag": "2025-03-06T12:00:00Z", "satellite": 16, "flux": 1.2, "energy": ">=10 MeV", ...}, ...]
+/**
+ * Parser for NOAA GOES proton flux data.
+ *
+ * NOAA Proton flux response is array-of-objects:
+ * [{"time_tag": "2025-03-06T12:00:00Z", "satellite": 16, "flux": 1.2, "energy": ">=10 MeV", ...}, ...]
+ *
+ * @see [[https://github.com/sethpearce/spaceweather-dashboard/blob/main/docs/domain/noaa-proton-flux.md Domain Documentation]]
+ */
+@doc("docs/domain/noaa-proton-flux.md")
 object NoaaProtonFlux:
   final case class ProtonReading(
     time_tag: String,

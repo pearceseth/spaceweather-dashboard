@@ -1,9 +1,17 @@
 package com.solarion.domain.upstream
 
+import com.solarion.annotation.doc
 import zio.json.*
 
-// NOAA X-ray flux response is array-of-objects:
-// [{"time_tag": "2026-03-07T14:55:00Z", "satellite": 18, "flux": 7.13e-07, "energy": "0.1-0.8nm", ...}, ...]
+/**
+ * Parser for NOAA GOES X-ray flux data.
+ *
+ * NOAA X-ray flux response is array-of-objects:
+ * [{"time_tag": "2026-03-07T14:55:00Z", "satellite": 18, "flux": 7.13e-07, "energy": "0.1-0.8nm", ...}, ...]
+ *
+ * @see [[https://github.com/sethpearce/spaceweather-dashboard/blob/main/docs/domain/noaa-xray-flux.md Domain Documentation]]
+ */
+@doc("docs/domain/noaa-xray-flux.md")
 object NoaaXrayFlux:
   final case class XrayReading(
     time_tag: String,

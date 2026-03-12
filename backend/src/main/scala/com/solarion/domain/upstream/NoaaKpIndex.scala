@@ -1,10 +1,18 @@
 package com.solarion.domain.upstream
 
+import com.solarion.annotation.doc
 import zio.json.*
 
-// NOAA Kp index response is array-of-arrays:
-// [["time_tag","Kp","Kp_fraction",...], ["2025-03-06 12:00:00","3","3.33",...], ...]
-// First row is header, subsequent rows are data
+/**
+ * Parser for NOAA SWPC Kp index data.
+ *
+ * NOAA Kp index response is array-of-arrays:
+ * [["time_tag","Kp","Kp_fraction",...], ["2025-03-06 12:00:00","3","3.33",...], ...]
+ * First row is header, subsequent rows are data.
+ *
+ * @see [[https://github.com/sethpearce/spaceweather-dashboard/blob/main/docs/domain/noaa-kp-index.md Domain Documentation]]
+ */
+@doc("docs/domain/noaa-kp-index.md")
 object NoaaKpIndex:
   // Response format: [["time_tag","Kp","a_running","station_count"], ["2026-03-01 00:00:00.000","2.67","12","8"], ...]
   def parseLatest(json: String): Option[(Double, String)] =

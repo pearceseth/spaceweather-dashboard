@@ -1,8 +1,17 @@
 package com.solarion.domain
 
+import com.solarion.annotation.doc
 import zio.json.*
 import java.time.Instant
 
+/**
+ * Aggregated space weather status response model.
+ *
+ * All fields except updatedAt are optional to allow partial failure.
+ *
+ * @see [[https://github.com/sethpearce/spaceweather-dashboard/blob/main/docs/domain/space-weather-status.md Domain Documentation]]
+ */
+@doc("docs/domain/space-weather-status.md")
 final case class SpaceWeatherStatus(
   kp: Option[Double],
   kpSource: Option[String],

@@ -1,9 +1,17 @@
 package com.solarion.domain.upstream
 
+import com.solarion.annotation.doc
 import zio.json.*
 
-// NOAA Solar Wind Mag response is array-of-arrays:
-// [["time_tag","bx_gsm","by_gsm","bz_gsm","lon_gsm","lat_gsm","bt"], ["2026-03-07 14:56:00.000","5.19","-6.82","-0.08","307.28","-0.56","8.57"], ...]
+/**
+ * Parser for NOAA SWPC solar wind magnetic field data.
+ *
+ * NOAA Solar Wind Mag response is array-of-arrays:
+ * [["time_tag","bx_gsm","by_gsm","bz_gsm","lon_gsm","lat_gsm","bt"], ["2026-03-07 14:56:00.000","5.19","-6.82","-0.08","307.28","-0.56","8.57"], ...]
+ *
+ * @see [[https://github.com/sethpearce/spaceweather-dashboard/blob/main/docs/domain/noaa-solar-wind-mag.md Domain Documentation]]
+ */
+@doc("docs/domain/noaa-solar-wind-mag.md")
 object NoaaSolarWindMag:
   final case class MagData(bz: Option[Double], bt: Option[Double])
 

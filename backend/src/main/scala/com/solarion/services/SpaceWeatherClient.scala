@@ -1,10 +1,19 @@
 package com.solarion.services
 
+import com.solarion.annotation.doc
 import com.solarion.domain.error.{DataSource, FetchError, NetworkError}
 import com.solarion.domain.upstream.*
 import zio.*
 import zio.http.*
 
+/**
+ * HTTP client for fetching upstream space weather data.
+ *
+ * Fetches from NOAA SWPC and GFZ Potsdam APIs.
+ *
+ * @see [[https://github.com/sethpearce/spaceweather-dashboard/blob/main/docs/services/space-weather-client.md Service Documentation]]
+ */
+@doc("docs/services/space-weather-client.md")
 trait SpaceWeatherClient:
   def fetchNoaaKpIndex: ZIO[Scope, FetchError, Option[(Double, String)]]
   def fetchNoaaSolarWindPlasma: ZIO[Scope, FetchError, Option[NoaaSolarWindPlasma.PlasmaData]]
